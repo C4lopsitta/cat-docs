@@ -1,7 +1,4 @@
 # Index
-## Other Pages
-- [API Reference](https://c4lopsitta.github.io/cat-docs)
-
-## Available here
+- [](API_Reference.md)
 - [](Database-Structure.md)
 

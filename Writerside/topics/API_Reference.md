@@ -1,6 +1,11 @@
 # API Reference
 
-[Go back to the Backend docs](https://c4lopsitta.github.io/cat-docs/)
+## Endpoints
+- /
+  - [GET](GET.md)
+  - [POST](POST.md)
+  - [PUT](PUT.md)
+  - [DELETE](DELETE.md)
 
 > Note
 > This definition is temporary as the API will be updated soon.
