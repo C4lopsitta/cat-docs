@@ -1,5 +1,6 @@
 # Database Structure
-Entity-Relationship diagram for the database in the API.
+Entity-Relationship diagram for the database in the API. Please note that this document is subject to updates when the 
+Analyst gives us updates on the project strucutre.
 ```mermaid
 erDiagram
 
@@ -48,6 +49,33 @@ erDiagram
     user |o--o{ cat : owns
     user |o--o{ cartItem : wants
     user |o--o{ wishListItem : dreamsOfOwning
-
 ```
+
+## Details on the Database
+- **Type**: SQLite3
+- **Single Connection**
+
+## SQL Schema
+```sql
+CREATE TABLE users(
+
+);
+
+CREATE TABLE tokens(
+
+);
+
+CREATE TABLE cats(
+
+);
+
+CREATE TABLE cartItems(
+
+);
+
+CREATE TABLE wishListItems(
+
+);
+```
+
 
