@@ -17,7 +17,7 @@
         <link href="https://github.com/C4lopsitta/cat-backend">GitHub Cat-Backend</link>
         <link href="https://github.com/C4lopsitta/cat-frontend">GitHub Cat-Frontend</link>
     </footer>
-    <build-profile instance="ar">
+    <build-profile instance="api_reference">
         <variables>
             <noindex-content>true</noindex-content>
         </variables>
