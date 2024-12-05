@@ -54,6 +54,9 @@ erDiagram
 ## Details on the Database
 - **Type**: SQLite3
 - **Single Connection**
+- **No active enforcement of Foreign Keys**
+    Do not run `PRAGMA foreign_keys = "on";` as this would disallow `NULL` values in foreign keys, whih are used to represent 
+    not owned cats.
 
 ## SQL Schema
 ```sql

@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="backend"
-                 name="backend"
+                 name="Kittens - Backend Documentation"
                  start-page="Index.md">
 
     <toc-element topic="Index.md"/>
