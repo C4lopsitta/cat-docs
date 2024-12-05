@@ -3,11 +3,18 @@
 <buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <variables></variables>
+    <variables>
+        <primary-color>strawberry</primary-color>
+        <link-color>ruby</link-color>
+    </variables>
     <build-profile instance="backend">
         <variables>
             <noindex-content>true</noindex-content>
         </variables>
     </build-profile>
-
+    <footer>
+        <copyright>2024 - Robaldo Simone</copyright>
+        <link href="https://github.com/C4lopsitta/cat-backend">GitHub Cat-Backend</link>
+        <link href="https://github.com/C4lopsitta/cat-frontend">GitHub Cat-Frontend</link>
+    </footer>
 </buildprofiles>
