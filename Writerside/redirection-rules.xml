@@ -10,4 +10,8 @@
         <description>Created after removal of "Starter" from Cat Backend</description>
         <accepts>starter.html</accepts>
     </rule>
+    <rule id="6dfb8b42">
+        <description>Created after removal of "Cat API" from Kittens - Backend Documentation</description>
+        <accepts>Cat-API.html</accepts>
+    </rule>
 </rules>

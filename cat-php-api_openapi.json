@@ -1,0 +1,181 @@
+{
+	"openapi": "3.0.2",
+	"info": {
+		"title": "Kittens API",
+		"version": "1.0",
+		"license": {
+			"name": "GNU GPLv3",
+			"url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
+		},
+		"description": "An API to buy, sell and manage Kittens."
+	},
+	"servers": [
+		{
+			"url": "https://api.kittens.robaldo.dev/"
+		}
+	],
+	"paths": {
+		"/": {
+			"get": {
+				"description": "Get one or all cats",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "The Cat's Database ID",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Found matching Cat relative to ID or all cats if no ID was provided",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [
+										{
+											"type": "array",
+											"items": {
+												"$ref": "#/components/schemas/CatWithId"
+											}
+										},
+										{
+											"$ref": "#/components/schemas/CatWithId"
+										}
+									]
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"description": "Create a new Cat",
+				"parameters": [
+					{
+						"in": "header",
+						"name": "content-type",
+						"description": "Request Content Type",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"enum": ["application/json"]
+                        },
+						"example": "application/json"
+					}
+				],
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Cat"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Accepted new cat"
+					}
+				}
+			},
+			"put": {
+				"description": "Update a Cat",
+				"parameters": [
+					{
+						"in": "header",
+						"name": "content-type",
+						"description": "Request Content Type",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"enum": ["application/json"]
+						},
+						"example": "application/json"
+					}
+				],
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CatWithId"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Accepted modifications to cat"
+					}
+				}
+			},
+			"delete": {
+				"description": "Delete a Cat",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"description": "The Cat's Database ID",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Deleted cat"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"CatWithId": {
+				"type": "object",
+				"properties": {
+					"descr": {
+						"type": "string",
+						"example": "the father"
+					},
+					"id": {
+						"type": "integer",
+						"example": 1
+					},
+					"value": {
+						"type": "integer",
+						"example": 1000
+					}
+				},
+				"example": {
+					"descr": "the father",
+					"id": 1,
+					"value": 1000
+				}
+			},
+			"Cat": {
+				"type": "object",
+				"properties": {
+					"descr": {
+						"type": "string",
+						"example": "the father"
+					},
+					"value": {
+						"type": "integer",
+						"example": 1000
+					}
+				},
+				"example": {
+					"descr": "the father",
+					"value": 1000
+				}
+			}
+		}
+	}
+}
