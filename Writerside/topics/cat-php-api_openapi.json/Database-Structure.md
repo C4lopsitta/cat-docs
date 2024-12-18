@@ -25,10 +25,12 @@ erDiagram
         TEXT description
         DATE whenLastSeen
         TEXT whereLastSeen
-        TEXT furType
+        TEXT race
+        TEXT furColor
         INTEGER weight
         BOOLEAN isStray
         BLOB image
+        TEXT imageMimeType
         INTEGER price
         VARCHAR(32) owner FK
     }
@@ -81,10 +83,12 @@ CREATE TABLE cats(
     description TEXT,
     whenLastSeen DATE,
     whereLastSeen TEXT,
+    race TEXT,
     furColor TEXT,
     weight INTEGER,
     isStray BOOLEAN,
     image BLOB,
+    imageMimeType TEXT,
     price INTEGER,
     owner VARCHAR(32),
     FOREIGN KEY(owner) REFERENCES users(uid)
