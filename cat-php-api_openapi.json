@@ -31,6 +31,45 @@
 								}
 							}
 						}
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
+			}
+		},
+		"/api/v1/users/register": {
+			"post": {
+				"description": "Create a new user",
+				"requestBody": {
+					"description": "The new user's details",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserRegistration"
+							}
+						}
+					}
+				},
+				"responses": {
+					"202": {
+						"description": "Registration has been accepted but has yet to be completed by the user through the appropriate email link.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserRegistrationAccepted"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request. Check if your request was formatted correctly and that all the fields match"
+					},
+					"401": {
+						"description": "The given email address is already in use."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
 					}
 				}
 			}
@@ -192,8 +231,10 @@
 					},
 					"cats": {
 						"type": "array",
+						"description": "The user's cats' UIDs. Can be empty.",
 						"items": {
-							"$ref": "#/components/schemas/Cat"
+							"type": "string",
+							"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 						}
 					},
 					"wishlist": {
@@ -205,6 +246,64 @@
 						}
 					}
 
+				}
+			},
+			"UserRegistration": {
+				"type": "object",
+				"required": [
+					"email", "username", "password"
+				],
+				"properties": {
+					"email": {
+						"type": "string",
+						"description": "The email new user's email address.",
+						"example": "bob@foo.bar"
+					},
+					"username": {
+						"type": "string",
+						"description": "The username. Must be composed only by lower and uppercase letters, numbers, dashes, underscores and spaces and not be longer than 64 characters.",
+						"example": "Bob"
+					},
+					"password": {
+						"type": "string",
+						"description": "The user's password. Must follow the password requirements",
+						"example": "Bob.Loves.Alice.42"
+					},
+					"emailConfirmationBaseUrl": {
+						"type": "string",
+						"description": "Intended for the frontend, it's the URL that will handle the registration confirmation. Remember that the query parameter confirmationId will be appended. Include protocol and path. If not given an api url will be given instead with a JSON response.",
+						"example": "https://example.com/users/confirm"
+					},
+					"description": {
+						"type": "string",
+						"description": "The user's description. Can be empty",
+						"example": "I'm bob and i love cats. I live in catworld and have 2^64 cats in my house. Their names are the fibonacci sequence. Except cat number 42 whose name is Megatron."
+					},
+					"pronouns": {
+						"type": "string",
+						"description": "The user's pronouns, can be empty.",
+						"example": "hee/hee"
+					}
+				}
+			},
+			"UserRegistrationAccepted": {
+				"type": "object",
+				"properties": {
+					"username": {
+						"type": "string",
+						"description": "The username",
+						"example": "Bob"
+					},
+					"email": {
+						"type": "string",
+						"description": "The email at which the confirmation has been sent to.",
+						"example": "bob@foo.bar"
+					},
+					"uid": {
+						"type": "string",
+						"description": "The new user's UID.",
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}
 				}
 			},
 			"CatWithId": {
