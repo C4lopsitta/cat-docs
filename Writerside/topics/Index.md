@@ -1,4 +1,12 @@
-# Index
+# Cat Backend
+This is the documentation for the TPSIT project about the Cat API.
+
+## Project structure
+The project uses two main repositories: `cat-backend` and `cat-frontend`. The Backend is written in PHP while the 
+frontend uses Microsoft's dotNET 8 web framework.
+[![](https://mermaid.ink/img/pako:eNptkU1ugzAQha9ieQVSuICXCEVdBClKuipkMdgDWAm2NZiqVZS714ZCWrVezXvzeX7sO5dWIRccSPbao_QTYdagh9rUhoXTkZ0cA6cTebOTSqsc5BWNuqzAiPSuJTLVJAo8NDBiWpVAGor8wrSJd3-TptPmI4kKKa1m9T_oerdhx5cj2x_LJ7igqhGvLMtYLgK8WCEQh-idxFw7oj93ackaHzbYSu-_jb8rWW_QJzpkKQRpVczGPMNaZRtkTolTbHxYG_MdH5AG0Co88T2CNfc9DlhzEUIFdK15bR6Bg8nb86eRXHiacMfDqF3PRQu3MajJhbfFQkNHMGyuA_Nm7VOj0t5SufyotKbVHX98AW_jpIs?type=png)](https://mermaid.live/edit#pako:eNptkU1ugzAQha9ieQVSuICXCEVdBClKuipkMdgDWAm2NZiqVZS714ZCWrVezXvzeX7sO5dWIRccSPbao_QTYdagh9rUhoXTkZ0cA6cTebOTSqsc5BWNuqzAiPSuJTLVJAo8NDBiWpVAGor8wrSJd3-TptPmI4kKKa1m9T_oerdhx5cj2x_LJ7igqhGvLMtYLgK8WCEQh-idxFw7oj93ackaHzbYSu-_jb8rWW_QJzpkKQRpVczGPMNaZRtkTolTbHxYG_MdH5AG0Co88T2CNfc9DlhzEUIFdK15bR6Bg8nb86eRXHiacMfDqF3PRQu3MajJhbfFQkNHMGyuA_Nm7VOj0t5SufyotKbVHX98AW_jpIs)
+
+## Index
 - [](API_Reference.md)
 - [](Database-Structure.md)
 

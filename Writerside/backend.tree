@@ -9,6 +9,12 @@
     <toc-element topic="Index.md">
         <toc-element topic="Database-Structure.md"/>
         <toc-element topic="API_Reference.md">
+            <toc-element topic="API-Users.md" toc-title="Users Endpoints">
+                <toc-element topic="UserUID.md" toc-title="User UID Endpoints" />
+                <toc-element topic="PurchaseCart.md" toc-title="Purchase User Cart" />
+                <toc-element topic="UserCart.md" toc-title="Manage User Cart" />
+                <toc-element topic="UserWishlist.md" toc-title="Manage User Wishlist" />
+            </toc-element>
             <toc-element topic="GET.md"/>
             <toc-element topic="POST.md"/>
             <toc-element topic="PUT.md"/>
