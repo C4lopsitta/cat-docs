@@ -79,6 +79,13 @@
 				"description": "Fetch the user's cart contents.",
 				"parameters": [
 					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}, {
 						"in": "header",
 						"name": "authentication",
 						"description": "Bearer Token",
@@ -115,6 +122,28 @@
 								"schema": {
 									"type": "object",
 									"properties": {
+										"billable": {
+											"type": "object",
+											"description": "Cost of all items in cart",
+											"properties": {
+												"amount": {
+													"type": "string",
+													"description": "Total cost",
+													"example": "42.00"
+												},
+												"currency": {
+													"type": "string",
+													"description": "Currency used in transaciton. Always EUR (Euro)",
+													"enum": ["EUR"],
+													"example": "EUR"
+												},
+												"vat": {
+													"type": "string",
+													"description": "VAT in total expense, already included in amount.",
+													"example": "9.24"
+												}
+											}
+										},
 										"cart": {
 											"type": "array",
 											"items": {
@@ -157,6 +186,13 @@
 				"description": "Add a cat to the user's cart.",
 				"parameters": [
 					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}, {
 						"in": "header",
 						"name": "authentication",
 						"description": "Bearer Token",
@@ -246,6 +282,23 @@
 			},
 			"delete": {
 				"description": "Delete one or more cats from the user's cart.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}, {
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
 				"requestBody": {
 					"description": "The cats to delete",
 					"content": {
@@ -267,7 +320,20 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Cat(s) deleted from cart successfully."
+						"description": "Cat(s) deleted from cart successfully.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"catsRemoved": {
+											"type": "integer",
+											"description": "How many cats were successfully deleted"
+										}
+									}
+								}
+							}
+						}
 					},
 					"400": {
 						"description": "The request was formatted incorrectly."
@@ -277,6 +343,131 @@
 					},
 					"404": {
 						"description": "The requested user or cat could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
+			}
+		},
+		"/api/v1/users/{uid}/cart/checkout": {
+			"post": {
+				"description": "",
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"card": {
+										"type": "object",
+										"description": "Payment card details",
+										"properties": {
+											"number": {
+												"type": "string",
+												"description": "Card number, can contain spaces between digits.",
+												"example": "0123 4567 8901 2345"
+											},
+											"cvv": {
+												"type": "integer",
+												"description": "Card security code",
+												"example": 123
+											},
+											"cardholder": {
+												"type": "string",
+												"description": "Cardholder Name",
+												"example": "Bob Bazbar"
+											},
+											"expiration": {
+												"type": "string",
+												"description": "Card expiration date in format month/year, both two digit.",
+												"example": "01/29"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}, {
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Payment was successful and cats were added to user account",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"billed": {
+											"type": "object",
+											"description": "Amount that was billed",
+											"properties": {
+												"amount": {
+													"type": "string",
+													"description": "Total cost billed",
+													"example": "42.00"
+												},
+												"currency": {
+													"type": "string",
+													"description": "Currency used in transaciton. Always EUR (Euro)",
+													"enum": ["EUR"],
+													"example": "EUR"
+												},
+												"vat": {
+													"type": "string",
+													"description": "VAT in total expense, already included in amount.",
+													"example": "9.24"
+												}
+											}
+										},
+										"saleUid": {
+											"type": "string",
+											"description": "Sale Unique Identifier",
+											"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+										},
+										"cats": {
+											"type": "array",
+											"description": "UID list of cats that were bought",
+											"items": {
+												"type": "string",
+												"description": "Cat UID",
+												"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid request."
+					},
+					"401": {
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+					},
+					"402": {
+						"description": "Payment failed."
+					},
+					"404": {
+						"description": "The requested user could not be found."
 					},
 					"500": {
 						"description": "Something went wrong on the server and the request could not be handled."

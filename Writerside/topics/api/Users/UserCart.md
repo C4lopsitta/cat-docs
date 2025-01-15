@@ -1,4 +1,5 @@
 # User Cart
+[The endpoint `./cart/checkout` is also available.](CheckoutCart.md)
 
 GET
 ---
