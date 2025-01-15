@@ -74,6 +74,56 @@
 				}
 			}
 		},
+		"/api/v1/users/authenticate": {
+			"post": {
+				"description": "Generate a token for the given user",
+				"responses": {
+					"200": {
+
+					}
+				}
+			}
+		},
+		"/api/v1/users/{uid}/validateToken": {
+			"post": {
+				"description": "Checks if the given user authentication token is valid.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}, {
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Token is valid.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"expires": {
+											"type": "integer",
+											"description": "Time until token expiration in seconds since Jan 1st, 1970"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/v1/users/{uid}/cart": {
 			"get": {
 				"description": "Fetch the user's cart contents.",
@@ -886,7 +936,7 @@
 					},
 					"wishlist": {
 						"type": "array",
-						"description": "The user's wishlisted cats UIDs. Can be empty.",
+						"description": "The user's wishlisted cats UIDs. Can be empty and won't contain more than 25 items, for more items check the user's wishlist endpoint.",
 						"items": {
 							"type": "string",
 							"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"

@@ -7,10 +7,11 @@
                  start-page="Index.md">
 
     <toc-element topic="Index.md">
-        <toc-element topic="Database-Structure.md"/>
         <toc-element topic="API_Reference.md">
             <toc-element topic="API-Users.md" >
                 <toc-element topic="UsersRegister.md" />
+                <toc-element topic="UserAuthenticate.md" />
+                <toc-element topic="UserValidateToken.md" />
                 <toc-element topic="UserUID.md" toc-title="User UID Endpoints" />
                 <toc-element topic="UserWishlist.md" toc-title="Manage User Wishlist" />
                 <toc-element topic="UserCart.md" toc-title="Manage User Cart" />
@@ -20,5 +21,6 @@
 
             </toc-element>
         </toc-element>
+        <toc-element topic="Database-Structure.md"/>
     </toc-element>
 </instance-profile>
