@@ -2,7 +2,7 @@
 This is the root page for the `users` API endpoint. <br />Other endpoints are also available:
 - [`uid`](UserUID.md)
   - `purchaseCart`
-  - `cart`
+  - [`cart`](UserCart.md)
   - `wishlist`
 - [`register`](UsersRegister.md)
 - `authenticate`

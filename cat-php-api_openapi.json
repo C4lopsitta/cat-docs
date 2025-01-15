@@ -74,6 +74,216 @@
 				}
 			}
 		},
+		"/api/v1/users/{uid}/cart": {
+			"get": {
+				"description": "Fetch the user's cart contents.",
+				"parameters": [
+					{
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}, {
+						"in": "query",
+						"required": false,
+						"name": "page",
+						"description": "The page's index if you want to recieve paged data. If not explicitly set, even with page 0, all items will be returned by default. Including items alone won't enable the paging.",
+						"schema": {
+							"type": "integer"
+						},
+						"example": "1",
+						"allowEmptyValue": true
+					}, {
+						"in": "query",
+						"required": false,
+						"name": "items",
+						"description": "How many items should be on each page.",
+						"schema": {
+							"type": "integer"
+						},
+						"example": "25",
+						"allowEmptyValue": true
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully fetched user's cart. Returns a list of cat UIDs.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"cart": {
+											"type": "array",
+											"items": {
+												"$ref": "#/components/schemas/Uid"
+											},
+											"description": "A list of the UIDs of the cats in the cart."
+										},
+										"page": {
+											"type": "integer",
+											"description": "The current requested page relative to the amount of items per page. Not available when paging is disabled.",
+											"example": 0
+										},
+										"viewing": {
+											"type": "string",
+											"description": "The range of currently shown items. Not available when paging is disabled.",
+											"example": "0-24"
+										},
+										"totalItems": {
+											"type": "integer",
+											"description": "The total amount of items in the cart",
+											"example": 42
+										}
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+					},
+					"404": {
+						"description": "The requested user could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
+			},
+			"put": {
+				"description": "Add a cat to the user's cart.",
+				"parameters": [
+					{
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"requestBody": {
+					"description": "The cat's uid that will be added to the user's cart",
+					"content": {
+						"applicaiton/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"catUid": {
+										"type": "string",
+										"example": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+										"description": "The cat's uid that will be added to the user's cart."
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Successfully added Cat to user's cart.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"cartItems": {
+											"type": "integer",
+											"description": "The amount of cats in the cart",
+											"example": 42
+										},
+										"catUid": {
+											"type": "string",
+											"example": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+											"description": "The UID of the cat that was just added."
+										}
+									}
+								}
+							}
+						}
+					},
+					"208": {
+						"description": "The cat is already in the cart",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"cartItems": {
+											"type": "integer",
+											"description": "The amount of cats in the cart",
+											"example": 42
+										},
+										"catUid": {
+											"type": "string",
+											"example": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+											"description": "The UID of the cat that was just added."
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The request was formatted incorrectly."
+					},
+					"401": {
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+					},
+					"403": {
+						"description": "The given cat is owned by another user and cannot be bought."
+					},
+					"404": {
+						"description": "The requested user or cat could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
+			},
+			"delete": {
+				"description": "Delete one or more cats from the user's cart.",
+				"requestBody": {
+					"description": "The cats to delete",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"cats": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Cat(s) deleted from cart successfully."
+					},
+					"400": {
+						"description": "The request was formatted incorrectly."
+					},
+					"401": {
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+					},
+					"404": {
+						"description": "The requested user or cat could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
+			}
+		},
 		"/": {
 			"get": {
 				"description": "Get one or all cats",
@@ -196,6 +406,10 @@
 	},
 	"components": {
 		"schemas": {
+			"Uid": {
+				"type": "string",
+				"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+			},
 			"User": {
 				"properties": {
 					"uid": {
