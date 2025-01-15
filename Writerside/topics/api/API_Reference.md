@@ -5,14 +5,14 @@
 All the endpoints marked with *authenticated* require a valid user authentication token to be accessed.
 Refer to the [authentication](#authentication) paragraph to understand how it works.
 - [`/users`](API-Users.md)
-- [`/cats`]()
+- [`/cats`](API-Cats.md)
 
 ## Authentication
 Authentication is handled with an *email address*, a valid *password* and an optional 2FA verification code if the 
 account has *two-factor authentication required*.
 ### Authenticating
 Considering a dummy account `bob` with credentials `bob@foo.bar` and password `boblovesalice`, you can get a token by calling 
-the [`/api/v1/users/authenticate`](#authenticating) endpoint. What follows is an example request:
+the [`/api/v1/users/authenticate`](UserAuthenticate.md) endpoint. What follows is an example request:
 ```json
 {
   "email": "bob@foo.bar",
