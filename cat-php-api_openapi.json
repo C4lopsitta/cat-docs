@@ -84,7 +84,7 @@
 				}
 			}
 		},
-		"/api/v1/users/{uid}/verify": {
+		"/api/v1/users/{uid}/validate": {
 			"post": {
 				"description": "Validate user account with the confirmation token",
 				"parameters": [

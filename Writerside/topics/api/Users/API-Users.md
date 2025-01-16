@@ -6,7 +6,6 @@ This is the root page for the `users` API endpoint. <br />Other endpoints are al
   - [`wishlist`](UserWishlist.md)
 - [`register`](UsersRegister.md)
 - [`authenticate`](UserAuthenticate.md)
-- [`validateToken`](UserValidateToken.md)
 - [`validateUserAccount`](UserValidateAccount.md)
 
 
