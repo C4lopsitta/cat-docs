@@ -84,6 +84,93 @@
 				}
 			}
 		},
+		"/api/v1/users/{uid}/verify": {
+			"post": {
+				"description": "Validate user account with the confirmation token",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID received from the query parameter",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}
+				],
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"confirmationId": {
+										"type": "string",
+										"description": "The confirmation ID received by query parameter",
+										"example": "..."
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Confirmation was successful. User is now completely registered.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"token": {
+											"type": "string",
+											"description": "A new token for the user.",
+											"example": "..."
+										},
+										"expiresIn": {
+											"type": "integer",
+											"description": "How many seconds the token will last before a renewal is required",
+											"example": 3600
+										}
+									}
+								}
+							}
+						}
+					},
+					"208": {
+						"description": "Account was already confirmed.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"token": {
+											"type": "string",
+											"description": "A new token for the user.",
+											"example": "..."
+										},
+										"expiresIn": {
+											"type": "integer",
+											"description": "How many seconds the token will last before a renewal is required",
+											"example": 3600
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request. Check if your request was formatted correctly and that all the fields match"
+					},
+					"401": {
+						"description": "Confirmation ID has expired. The user will have to do a new login to receive a new confirmation email."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
+			}
+		},
 		"/api/v1/users/{uid}/validateToken": {
 			"post": {
 				"description": "Checks if the given user authentication token is valid.",
@@ -968,7 +1055,7 @@
 					},
 					"emailConfirmationBaseUrl": {
 						"type": "string",
-						"description": "Intended for the frontend, it's the URL that will handle the registration confirmation. Remember that the query parameter confirmationId will be appended. Include protocol and path. If not given an api url will be given instead with a JSON response.",
+						"description": "Intended for the frontend, it's the URL that will handle the registration confirmation. Remember that the query parameter confirmationId and userUid will be appended. Include protocol and path. If not given an api url will be given instead with a JSON response.",
 						"example": "https://example.com/users/confirm"
 					},
 					"description": {
