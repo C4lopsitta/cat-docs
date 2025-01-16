@@ -8,29 +8,28 @@ erDiagram
         VARCHAR(32) uid PK
         TEXT username
         TEXT email
+        BLOB image
+        VARCHAR(16) imageMimeType
+        TEXT description
+        VARCHAR(32) pronouns
         TEXT passwordHash
+        BOOLEAN isAccountConfirmed
         %% check in future if OPT should be added %%
-    }
-    
-    token {
-        TEXT token PK
-        VARCHAR(32) user FK
-        INTEGER expirationDate
     }
         
     cat {
         VARCHAR(32) uid PK
-        TEXT name
+        VARCHAR(128) name
         INTEGER age
         TEXT description
         DATE whenLastSeen
-        TEXT whereLastSeen
-        TEXT race
-        TEXT furColor
+        VARCHAR(32) whereLastSeen
+        VARCHAR(32) race
+        VARCHAR(16) furColor
         INTEGER weight
         BOOLEAN isStray
         BLOB image
-        TEXT imageMimeType
+        VARCHAR(16) imageMimeType
         INTEGER price
         VARCHAR(32) owner FK
     }
@@ -58,37 +57,50 @@ erDiagram
 
 ## SQL Schema
 ```sql
-CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
     uid VARCHAR(32) PRIMARY KEY,
-    username TEXT NOT NULL,
-    email TEXT NOT NULL,
-    passwordHash TEXT NOT NULL
+    username VARCHAR(32) NOT NULL,
+    email VARCHAR(64) NOT NULL,
+    image BLOB,
+    imageMimeType VARCHAR(16),
+    description TEXT,
+    pronouns VARCHAR(32),
+    passwordHash TEXT NOT NULL,
+    isAccountConfirmed BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE tokens(
-    token TEXT PRIMARY KEY,
-    user VARCHAR(32) NOT NULL,
-    expirationDate INTEGER,
-    FOREIGN KEY(user) REFERENCES users(uid)
-);
-
-CREATE TABLE cats(
+CREATE TABLE IF NOT EXISTS cats(
     uid VARCHAR(32) PRIMARY KEY,
-    name TEXT NOT NULL,
+    name VARCHAR(128) NOT NULL,
     age INTEGER,
     description TEXT,
     whenLastSeen DATE,
-    whereLastSeen TEXT,
-    race TEXT,
-    furColor TEXT,
+    whereLastSeen VARCHAR(32),
+    race VARCHAR(32),
+    furColor VARCHAR(16),
     weight INTEGER,
     isStray BOOLEAN,
     image BLOB,
-    imageMimeType TEXT,
+    imageMimeType VARCHAR(16),
     price INTEGER,
     owner VARCHAR(32),
     FOREIGN KEY(owner) REFERENCES users(uid)
 );
+
+CREATE TABLE cartItems(
+    uid VARCHAR(32) PRIMARY KEY,
+    owner VARCHAR(32), cat VARCHAR(32),
+    FOREIGN KEY(owner) REFERENCES users(uid),
+    FOREIGN KEY(cat) REFERENCES cats(uid)
+);
+
+CREATE TABLE wishListItems(
+    uid VARCHAR(32) PRIMARY KEY,
+    owner VARCHAR(32), cat VARCHAR(32),
+    FOREIGN KEY(owner) REFERENCES users(uid),
+    FOREIGN KEY(cat) REFERENCES cats(uid)
+);
+
 
 CREATE TABLE cartItems(
     uid VARCHAR(32) PRIMARY KEY,
