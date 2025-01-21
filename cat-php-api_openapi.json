@@ -167,6 +167,17 @@
 				}
 			}
 		},
+		"/api/v1/users/{uid}": {
+			"get": {
+
+			},
+			"put": {
+
+			},
+			"delete": {
+
+			}
+		},
 		"/api/v1/users/{uid}/validate": {
 			"post": {
 				"description": "Validate user account with the confirmation token",
