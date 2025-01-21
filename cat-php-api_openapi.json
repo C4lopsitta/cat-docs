@@ -134,28 +134,6 @@
 							}
 						}
 					},
-					"208": {
-						"description": "Account was already confirmed.",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"properties": {
-										"token": {
-											"type": "string",
-											"description": "A new token for the user.",
-											"example": "..."
-										},
-										"expiresIn": {
-											"type": "integer",
-											"description": "How many seconds the token will last before a renewal is required",
-											"example": 3600
-										}
-									}
-								}
-							}
-						}
-					},
 					"400": {
 						"description": "Bad request. Check if your request was formatted correctly and that all the fields match"
 					},
