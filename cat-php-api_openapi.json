@@ -77,9 +77,92 @@
 		"/api/v1/users/authenticate": {
 			"post": {
 				"description": "Generate a token for the given user",
+
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"email": {
+										"type": "string",
+										"description": "User's email address",
+										"example": "bob@baz.bar"
+									},
+									"password": {
+										"type": "string",
+										"description": "User's password",
+										"example": "password1234"
+									},
+									"tfa": {
+										"type": "integer",
+										"description": "User's 2FA code",
+										"example": 123456
+									}
+								}
+							}
+						}
+					}
+				},
 				"responses": {
 					"200": {
-
+						"description": "Confirmation was successful. User is now completely registered.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"uid": {
+											"type": "string",
+											"description": "User's UID",
+											"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+										},
+										"token": {
+											"type": "string",
+											"description": "A new token for the user.",
+											"example": "..."
+										},
+										"expiresIn": {
+											"type": "integer",
+											"description": "How many seconds the token will last before a renewal is required",
+											"example": 3600
+										}
+									}
+								}
+							}
+						}
+					},
+					"208": {
+						"description": "Account was already confirmed.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"token": {
+											"type": "string",
+											"description": "A new token for the user.",
+											"example": "..."
+										},
+										"expiresIn": {
+											"type": "integer",
+											"description": "How many seconds the token will last before a renewal is required",
+											"example": 3600
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request. Check if your request was formatted correctly and that all the fields match"
+					},
+					"401": {
+						"description": "Confirmation ID has expired. The user will have to do a new login to receive a new confirmation email."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
 					}
 				}
 			}
@@ -854,124 +937,13 @@
 			}
 		},
 
-		"/": {
-			"get": {
-				"description": "Get one or all cats",
-				"parameters": [
-					{
-						"name": "id",
-						"in": "query",
-						"description": "The Cat's Database ID",
-						"required": false,
-						"schema": {
-							"type": "integer"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Found matching Cat relative to ID or all cats if no ID was provided",
-						"content": {
-							"application/json": {
-								"schema": {
-									"oneOf": [
-										{
-											"type": "array",
-											"items": {
-												"$ref": "#/components/schemas/CatWithId"
-											}
-										},
-										{
-											"$ref": "#/components/schemas/CatWithId"
-										}
-									]
-								}
-							}
-						}
-					}
-				}
-			},
-			"post": {
-				"description": "Create a new Cat",
-				"parameters": [
-					{
-						"in": "header",
-						"name": "content-type",
-						"description": "Request Content Type",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"enum": ["application/json"]
-                        },
-						"example": "application/json"
-					}
-				],
-				"requestBody": {
-					"description": "",
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/Cat"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Accepted new cat"
-					}
-				}
-			},
-			"put": {
-				"description": "Update a Cat",
-				"parameters": [
-					{
-						"in": "header",
-						"name": "content-type",
-						"description": "Request Content Type",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"enum": ["application/json"]
-						},
-						"example": "application/json"
-					}
-				],
-				"requestBody": {
-					"description": "",
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/CatWithId"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Accepted modifications to cat"
-					}
-				}
-			},
-			"delete": {
-				"description": "Delete a Cat",
-				"parameters": [
-					{
-						"name": "id",
-						"in": "query",
-						"description": "The Cat's Database ID",
-						"required": false,
-						"schema": {
-							"type": "integer"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Deleted cat"
-					}
-				}
-			}
+
+		"/api/v1/cats": {
+		},
+		"/api/v1/cats/create": {
+		},
+		"/api/v1/cats/{uid}": {
+
 		}
 	},
 	"components": {
@@ -1088,45 +1060,6 @@
 						"description": "The new user's UID.",
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}
-				}
-			},
-			"CatWithId": {
-				"type": "object",
-				"properties": {
-					"descr": {
-						"type": "string",
-						"example": "the father"
-					},
-					"id": {
-						"type": "integer",
-						"example": 1
-					},
-					"value": {
-						"type": "integer",
-						"example": 1000
-					}
-				},
-				"example": {
-					"descr": "the father",
-					"id": 1,
-					"value": 1000
-				}
-			},
-			"Cat": {
-				"type": "object",
-				"properties": {
-					"descr": {
-						"type": "string",
-						"example": "the father"
-					},
-					"value": {
-						"type": "integer",
-						"example": 1000
-					}
-				},
-				"example": {
-					"descr": "the father",
-					"value": 1000
 				}
 			}
 		}
