@@ -1074,6 +1074,27 @@
 
 
 		"/api/v1/cats": {
+			"get": {
+				"description": "List all cats",
+				"responses": {
+					"200": {
+						"description": "A list of cats",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Cat"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
+			}
 		},
 		"/api/v1/cats/create": {
 		},
@@ -1086,6 +1107,82 @@
 			"Uid": {
 				"type": "string",
 				"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+			},
+			"Cat": {
+				"type": "object",
+				"properties": {
+					"uid": {
+						"type": "string",
+						"description": "The user's Unique ID",
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					"name": {
+						"type": "string",
+						"description": "Cat's name",
+						"example": "Lord Megatron Destroyer of Worlds"
+					},
+					"age": {
+						"type": "integer",
+						"description": "Cat's age",
+						"example": 42
+					},
+					"description": {
+						"type": "string",
+						"description": "Cat's description",
+						"example": "Lord Megatron Destroyer of Worlds, more affectionately known as Wiwi, used to be the general commander of the catworld army during the liberation of France from occupation."
+					},
+					"whenLastSeen": {
+						"type": "string",
+						"description": "Date of where the cat, usually when stray, was last seen in format DD-MM-YYYY",
+						"example": "27/02/1933"
+					},
+					"whereLastSeen": {
+						"type": "string",
+						"description": "Where the cat was last seen",
+						"example": "Platz der Republik 1, 11011 Berlin, Germany"
+					},
+					"race": {
+						"type": "string",
+						"description": "The cat's race",
+						"example": ""
+					},
+					"furColor": {
+						"type": "string",
+						"description": "The cat's fur color",
+						"example": "White"
+					},
+					"weight": {
+						"type": "integer",
+						"description": "The cat's weight in grams",
+						"example": 420
+					},
+					"isStray": {
+						"type": "boolean",
+						"description": "If the cat is stray or not",
+						"example": false
+					},
+					"price": {
+						"type": "integer",
+						"description": "The cat's price in cents of EUR",
+						"example": 6942
+					},
+					"owner": {
+						"type": "string",
+						"description": "The owner's UID, can be null or not set",
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					"image": {
+						"type": "string",
+						"description": "The user's profile picture in base64 format.",
+						"example": "base64 ........"
+					},
+					"imageMime": {
+						"type": "string",
+						"enum": ["image/jpeg", "image/png", "image/gif"],
+						"description": "The user's profile picture mime type",
+						"example": "image/gif"
+					}
+				}
 			},
 			"User": {
 				"properties": {

@@ -11,7 +11,7 @@ This is the root page for the `users` API endpoint. <br />Other endpoints are al
 
 What follows is the definition for the current endpoint.
 
-## /api/v1/users
+## List all users
 
 <api-endpoint openapi-path="../../../../cat-php-api_openapi.json" method="GET" endpoint="/api/v1/users"/>
 
