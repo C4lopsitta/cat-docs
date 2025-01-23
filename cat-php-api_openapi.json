@@ -160,7 +160,7 @@
 					},
 					{
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": false,
 						"schema": { "type": "string" },
@@ -169,7 +169,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Returns user data with contents depending on the authentication status",
+						"description": "Returns user data with contents depending on the authorization status",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -190,7 +190,7 @@
 				}
 			},
 			"put": {
-				"description": "Update your user's details. Requires authentication",
+				"description": "Update your user's details. Requires authorization",
 				"parameters": [
 					{
 						"in": "path",
@@ -202,7 +202,7 @@
 					},
 					{
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -240,7 +240,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Returns user data with contents depending on the authentication status",
+						"description": "Returns user data with contents depending on the authorization status",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -264,7 +264,7 @@
 				}
 			},
 			"delete": {
-				"description": "Delete your own user. Requires authentication.",
+				"description": "Delete your own user. Requires authorization.",
 				"parameters": [
 					{
 						"in": "path",
@@ -276,7 +276,7 @@
 					},
 					{
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -391,7 +391,7 @@
 		},
 		"/api/v1/users/{uid}/validateToken": {
 			"post": {
-				"description": "Checks if the given user authentication token is valid.",
+				"description": "Checks if the given user authorization token is valid.",
 				"parameters": [
 					{
 						"in": "path",
@@ -402,7 +402,7 @@
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}, {
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -442,7 +442,7 @@
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}, {
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -549,7 +549,7 @@
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}, {
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -647,7 +647,7 @@
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}, {
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -756,7 +756,7 @@
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}, {
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -918,7 +918,7 @@
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}, {
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
@@ -1013,7 +1013,7 @@
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 					}, {
 						"in": "header",
-						"name": "authentication",
+						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
