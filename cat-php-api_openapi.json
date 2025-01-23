@@ -148,13 +148,158 @@
 		},
 		"/api/v1/users/{uid}": {
 			"get": {
-
+				"description": "Fetch an individual user's details.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					{
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": false,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Returns user data with contents depending on the authentication status",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The requested was badly formatted."
+					},
+					"404": {
+						"description": "The requested user could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
 			},
 			"put": {
-
+				"description": "Update your user's details. Requires authentication",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					{
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"requestBody": {
+					"description": "The updated user data",
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"description": {
+										"description": "User's updated description",
+										"type": "string",
+										"example": "I'm Bob and my best friend is Alice"
+									},
+									"pronouns": {
+										"description": "User's updated pronouns",
+										"type": "string",
+										"example": "her/icopter"
+									},
+									"image": {
+										"description": "Updated user image in base64",
+										"type": "string"
+									},
+									"image_mime": {
+										"description": "Updated user image mime type",
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Returns user data with contents depending on the authentication status",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The requested was badly formatted."
+					},
+					"401": {
+						"description": "Error with authenticating the request."
+					},
+					"404": {
+						"description": "The requested user could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
 			},
 			"delete": {
-
+				"description": "Delete your own user. Requires authentication.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "User UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					{
+						"in": "header",
+						"name": "authentication",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully deleted user."
+					},
+					"400": {
+						"description": "The requested was badly formatted."
+					},
+					"401": {
+						"description": "Error with authenticating the request."
+					},
+					"404": {
+						"description": "The requested user could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
 			}
 		},
 		"/api/v1/users/{uid}/validate": {
