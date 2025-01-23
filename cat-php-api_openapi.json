@@ -11,7 +11,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://api.kittens.robaldo.dev/"
+			"url": "https://kittens.robaldo.dev/"
 		}
 	],
 	"paths": {
@@ -181,6 +181,16 @@
 					"400": {
 						"description": "The requested was badly formatted."
 					},
+					"403": {
+						"description": "User is not verified. Complete account verification through email first.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUserNotVerified"
+								}
+							}
+						}
+					},
 					"404": {
 						"description": "The requested user could not be found."
 					},
@@ -254,6 +264,16 @@
 					},
 					"401": {
 						"description": "Error with authenticating the request."
+					},
+					"403": {
+						"description": "User is not verified. Complete account verification through email first.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUserNotVerified"
+								}
+							}
+						}
 					},
 					"404": {
 						"description": "The requested user could not be found."
@@ -1291,6 +1311,21 @@
 						"type": "string",
 						"description": "The new user's UID.",
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					}
+				}
+			},
+			"ExceptionUserNotVerified": {
+				"type": "object",
+				"properties": {
+					"error": {
+						"type": "string",
+						"description": "Definition of error",
+						"default": "User account is not verified"
+					},
+					"status": {
+						"type": "integer",
+						"description": "Status code of response",
+						"default": 403
 					}
 				}
 			}
