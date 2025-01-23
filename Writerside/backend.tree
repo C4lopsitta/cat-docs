@@ -10,8 +10,8 @@
         <toc-element topic="API_Reference.md">
             <toc-element topic="API-Users.md" >
                 <toc-element topic="UsersRegister.md" />
-                <toc-element topic="UserAuthenticate.md" />
                 <toc-element topic="UserValidateAccount.md" />
+                <toc-element topic="UserAuthenticate.md" />
 <!--                <toc-element topic="UserValidateToken.md" />-->
                 <toc-element topic="UserUID.md" toc-title="User UID Endpoints">
                     <toc-element topic="UserWishlist.md" toc-title="Manage User Wishlist" />
