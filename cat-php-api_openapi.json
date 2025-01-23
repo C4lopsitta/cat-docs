@@ -263,7 +263,14 @@
 						"description": "The requested was badly formatted."
 					},
 					"401": {
-						"description": "Error with authenticating the request."
+						"description": "Error with authenticating the request.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"403": {
 						"description": "User is not verified. Complete account verification through email first.",
@@ -311,7 +318,14 @@
 						"description": "The requested was badly formatted."
 					},
 					"401": {
-						"description": "Error with authenticating the request."
+						"description": "Error with authenticating the request.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"404": {
 						"description": "The requested user could not be found."
@@ -547,7 +561,14 @@
 						}
 					},
 					"401": {
-						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"404": {
 						"description": "The requested user could not be found."
@@ -642,7 +663,14 @@
 						"description": "The request was formatted incorrectly."
 					},
 					"401": {
-						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"403": {
 						"description": "The given cat is owned by another user and cannot be bought."
@@ -714,7 +742,14 @@
 						"description": "The request was formatted incorrectly."
 					},
 					"401": {
-						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"404": {
 						"description": "The requested user or cat could not be found."
@@ -836,7 +871,14 @@
 						"description": "Invalid request."
 					},
 					"401": {
-						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"402": {
 						"description": "Payment failed."
@@ -1011,7 +1053,14 @@
 						"description": "The request was formatted incorrectly."
 					},
 					"401": {
-						"description": "Token is not valid and the wishlist cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+						"description": "Token is not valid and the wishlist cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"404": {
 						"description": "The requested user or cat could not be found."
@@ -1080,7 +1129,14 @@
 						"description": "The request was formatted incorrectly."
 					},
 					"401": {
-						"description": "Token is not valid and the wishlist cannot be accessed. The token might be expired or not allowed to access the given user's private details."
+						"description": "Token is not valid and the wishlist cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"404": {
 						"description": "The requested user or cat could not be found."
@@ -1320,12 +1376,42 @@
 					"error": {
 						"type": "string",
 						"description": "Definition of error",
-						"default": "User account is not verified"
+						"default": "User account is not verified",
+						"example": "User account is not verified"
 					},
 					"status": {
 						"type": "integer",
 						"description": "Status code of response",
-						"default": 403
+						"default": 403,
+						"example": 403
+					}
+				}
+			},
+			"ExceptionUnauthorized": {
+				"type": "object",
+				"properties": {
+					"error": {
+						"type": "string",
+						"description": "Definition of error",
+						"default": "Unauthorized",
+						"example": "Unauthorized"
+					},
+					"status": {
+						"type": "integer",
+						"description": "Status code of response",
+						"default": 401,
+						"example": 401
+					},
+					"reason": {
+						"type": "string",
+						"enum": [
+							"Token expired",
+							"No token provided",
+							"Invalid token",
+							"Unauthorized"
+						],
+						"description": "Why you are unauthorized. Defaults to \"Unauthorized\" which is a generic reason.",
+						"example": "Unauthorized"
 					}
 				}
 			}
