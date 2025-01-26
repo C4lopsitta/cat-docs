@@ -1485,7 +1485,9 @@
 			}
 		},
 		"/api/v1/cats/{uid}/sell": {
+			"post": {
 
+			}
 		},
 		"/api/v1/cats/create": {
 			"post": {
