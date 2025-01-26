@@ -80,6 +80,27 @@
 						}
 					},
 					"401": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"error": {
+											"type": "string",
+											"description": "Definition of error",
+											"example": "User already exists",
+											"default": "User already exists"
+										},
+										"status": {
+											"type": "integer",
+											"description": "Status code of response",
+											"example": 401,
+											"default": 401
+										}
+									}
+								}
+							}
+						},
 						"description": "The given email address is already in use."
 					},
 					"500": {
@@ -166,6 +187,13 @@
 						}
 					},
 					"401": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						},
 						"description": "Confirmation ID has expired. The user will have to do a new login to receive a new confirmation email."
 					},
 					"500": {
@@ -389,7 +417,21 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Successfully deleted user."
+						"description": "Successfully deleted user.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"success": {
+											"type": "boolean",
+											"description": "Always true as 200 represents successful operation",
+											"example": true
+										}
+									}
+								}
+							}
+						}
 					},
 					"400": {
 						"description": "The requested was badly formatted.",
@@ -520,7 +562,14 @@
 						}
 					},
 					"401": {
-						"description": "Confirmation ID has expired. The user will have to do a new login to receive a new confirmation email."
+						"description": "Confirmation ID has expired. The user will have to do a new login to receive a new confirmation email.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
 					},
 					"500": {
 						"description": "Something went wrong on the server and the request could not be handled.",
