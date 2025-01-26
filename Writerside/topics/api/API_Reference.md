@@ -12,6 +12,9 @@ All the endpoints marked with *authenticated* require a valid user authenticatio
 > - Password Reset
 > - Paging
 
+## Definitions
+The definitions of common schemas are available in the [API Definitions Page.](API-Definitions.md)
+
 ## OpenAPI Specification file
 The *OpenAPI Specification JSON file* is available on the GitHub repository for the documentation. You can immediately jump 
 to it with [this link to view the RAW content of the file](https://raw.githubusercontent.com/C4lopsitta/cat-docs/refs/heads/main/cat-php-api_openapi.json)

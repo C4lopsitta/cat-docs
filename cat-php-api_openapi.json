@@ -1926,6 +1926,28 @@
 					}
 				}
 			},
+			"ExceptionMethodNotAllowed": {
+				"type": "object",
+				"properties": {
+					"error": {
+						"type": "string",
+						"description": "Definition of error",
+						"default": "Method not allowed",
+						"example": "Method not allowed"
+					},
+					"status": {
+						"type": "integer",
+						"description": "Status code of response",
+						"default": 405,
+						"example": 405
+					},
+					"field_errors": {
+						"type": "string",
+						"description": "The method that was used to make the request.",
+						"example": "PUT"
+					}
+				}
+			},
 			"ExceptionServerError": {
 				"type": "object",
 				"properties": {
