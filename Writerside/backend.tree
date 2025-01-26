@@ -20,7 +20,9 @@
                 </toc-element>
             </toc-element>
             <toc-element topic="API-Cats.md">
-                <toc-element topic="CatsUID.md" />
+                <toc-element topic="CatsUID.md">
+                    <toc-element topic="CatsSell.md" />
+                </toc-element>
                 <toc-element topic="CatsCreate.md" />
             </toc-element>
         </toc-element>

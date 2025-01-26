@@ -33,6 +33,13 @@
 						}
 					},
 					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						},
 						"description": "Something went wrong on the server and the request could not be handled."
 					}
 				}
@@ -63,12 +70,26 @@
 						}
 					},
 					"400": {
-						"description": "Bad request. Check if your request was formatted correctly and that all the fields match"
+						"description": "Bad request. Check if your request was formatted correctly and that all the fields match",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "The given email address is already in use."
 					},
 					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						},
 						"description": "Something went wrong on the server and the request could not be handled."
 					}
 				}
@@ -135,12 +156,26 @@
 						}
 					},
 					"400": {
-						"description": "Bad request. Check if your request was formatted correctly and that all the fields match"
+						"description": "Bad request. Check if your request was formatted correctly and that all the fields match",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Confirmation ID has expired. The user will have to do a new login to receive a new confirmation email."
 					},
 					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						},
 						"description": "Something went wrong on the server and the request could not be handled."
 					}
 				}
@@ -179,7 +214,14 @@
 						}
 					},
 					"400": {
-						"description": "The requested was badly formatted."
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"403": {
 						"description": "User is not verified. Complete account verification through email first.",
@@ -192,9 +234,23 @@
 						}
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user could not be found."
 					},
 					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						},
 						"description": "Something went wrong on the server and the request could not be handled."
 					}
 				}
@@ -260,7 +316,14 @@
 						}
 					},
 					"400": {
-						"description": "The requested was badly formatted."
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Error with authenticating the request.",
@@ -283,10 +346,24 @@
 						}
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user could not be found."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			},
@@ -315,7 +392,14 @@
 						"description": "Successfully deleted user."
 					},
 					"400": {
-						"description": "The requested was badly formatted."
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Error with authenticating the request.",
@@ -328,10 +412,24 @@
 						}
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user could not be found."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -412,13 +510,27 @@
 						}
 					},
 					"400": {
-						"description": "Bad request. Check if your request was formatted correctly and that all the fields match"
+						"description": "Bad request. Check if your request was formatted correctly and that all the fields match",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Confirmation ID has expired. The user will have to do a new login to receive a new confirmation email."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -571,10 +683,24 @@
 						}
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user could not be found."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			},
@@ -660,7 +786,14 @@
 						}
 					},
 					"400": {
-						"description": "The request was formatted incorrectly."
+						"description": "The request was formatted incorrectly.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
@@ -676,10 +809,24 @@
 						"description": "The given cat is owned by another user and cannot be bought."
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user or cat could not be found."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			},
@@ -739,7 +886,14 @@
 						}
 					},
 					"400": {
-						"description": "The request was formatted incorrectly."
+						"description": "The request was formatted incorrectly.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
@@ -752,10 +906,24 @@
 						}
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user or cat could not be found."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -868,7 +1036,14 @@
 						}
 					},
 					"400": {
-						"description": "Invalid request."
+						"description": "Invalid request.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Token is not valid and the cart cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
@@ -884,10 +1059,24 @@
 						"description": "Payment failed."
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user could not be found."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -961,10 +1150,24 @@
 						}
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user could not be found."
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			},
@@ -1050,7 +1253,14 @@
 						}
 					},
 					"400": {
-						"description": "The request was formatted incorrectly."
+						"description": "The request was formatted incorrectly.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Token is not valid and the wishlist cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
@@ -1063,9 +1273,23 @@
 						}
 					},
 					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
 						"description": "The requested user or cat could not be found."
 					},
 					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						},
 						"description": "Something went wrong on the server and the request could not be handled."
 					}
 				}
@@ -1126,7 +1350,14 @@
 						}
 					},
 					"400": {
-						"description": "The request was formatted incorrectly."
+						"description": "The request was formatted incorrectly.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
 					},
 					"401": {
 						"description": "Token is not valid and the wishlist cannot be accessed. The token might be expired or not allowed to access the given user's private details.",
@@ -1139,10 +1370,24 @@
 						}
 					},
 					"404": {
-						"description": "The requested user or cat could not be found."
+						"description": "The requested user or cat could not be found.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						}
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -1167,15 +1412,114 @@
 						}
 					},
 					"500": {
-						"description": "Something went wrong on the server and the request could not be handled."
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
 					}
 				}
 			}
 		},
-		"/api/v1/cats/create": {
-		},
 		"/api/v1/cats/{uid}": {
+			"get": {
 
+			},
+			"put": {
+
+			},
+			"delete": {
+
+			}
+		},
+		"/api/v1/cats/{uid}/sell": {
+
+		},
+		"/api/v1/cats/create": {
+			"post": {
+				"description": "Create a new cat owned by your user.",
+				"parameters": [
+					{
+						"in": "header",
+						"name": "authorization",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CatCreate"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successfully created cat",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"uid": {
+											"type": "string",
+											"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Error with authenticating the request.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "User is not verified. Complete account verification through email first.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUserNotVerified"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"components": {
@@ -1183,6 +1527,70 @@
 			"Uid": {
 				"type": "string",
 				"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+			},
+			"CatCreate": {
+				"type": "object",
+				"required": [
+					"name"
+				],
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "Cat's name",
+						"example": "Lord Megatron Destroyer of Worlds"
+					},
+					"age": {
+						"type": "integer",
+						"description": "Cat's age",
+						"example": 42
+					},
+					"description": {
+						"type": "string",
+						"description": "Cat's description",
+						"example": "Lord Megatron Destroyer of Worlds, more affectionately known as Wiwi, used to be the general commander of the catworld army during the liberation of France from occupation."
+					},
+					"whenLastSeen": {
+						"type": "string",
+						"description": "Date of where the cat, usually when stray, was last seen in format DD-MM-YYYY",
+						"example": "27/02/1933"
+					},
+					"whereLastSeen": {
+						"type": "string",
+						"description": "Where the cat was last seen",
+						"example": "Platz der Republik 1, 11011 Berlin, Germany"
+					},
+					"race": {
+						"type": "string",
+						"description": "The cat's race",
+						"example": ""
+					},
+					"furColor": {
+						"type": "string",
+						"description": "The cat's fur color",
+						"example": "White"
+					},
+					"weight": {
+						"type": "integer",
+						"description": "The cat's weight in grams",
+						"example": 420
+					},
+					"isStray": {
+						"type": "boolean",
+						"description": "If the cat is stray or not",
+						"example": false
+					},
+					"image": {
+						"type": "string",
+						"description": "The user's profile picture in base64 format.",
+						"example": "data:image/...;base64,........"
+					},
+					"imageMime": {
+						"type": "string",
+						"enum": ["image/jpeg", "image/png", "image/gif"],
+						"description": "The user's profile picture mime type",
+						"example": "image/gif"
+					}
+				}
 			},
 			"Cat": {
 				"type": "object",
@@ -1250,7 +1658,7 @@
 					"image": {
 						"type": "string",
 						"description": "The user's profile picture in base64 format.",
-						"example": "base64 ........"
+						"example": "data:image/...;base64,........"
 					},
 					"imageMime": {
 						"type": "string",
@@ -1413,6 +1821,98 @@
 						"description": "Why you are unauthorized. Defaults to \"Unauthorized\" which is a generic reason.",
 						"example": "Unauthorized"
 					}
+				}
+			},
+			"ExceptionNotFound": {
+				"type": "object",
+				"properties": {
+					"error": {
+						"type": "string",
+						"description": "Definition of error",
+						"default": "Not found",
+						"example": "Not found"
+					},
+					"status": {
+						"type": "integer",
+						"description": "Status code of response",
+						"default": 404,
+						"example": 404
+					},
+					"reason": {
+						"type": "string",
+						"enum": [
+							"Requested cat could not be found",
+							"Requested user could not be found",
+							"Requested path could not be found"
+						],
+						"description": "What wasn't found.",
+						"example": "Requested path could not be found"
+					}
+				}
+			},
+			"ExceptionBadRequest": {
+				"type": "object",
+				"properties": {
+					"error": {
+						"type": "string",
+						"description": "Definition of error",
+						"default": "Bad Request",
+						"example": "Bad Request"
+					},
+					"status": {
+						"type": "integer",
+						"description": "Status code of response",
+						"default": 400,
+						"example": 400
+					},
+					"field_errors": {
+						"type": "array",
+						"description": "A list of fields of the request that were formatted badly. An issue with an email field might also mean that the given password was wrong.",
+						"items": {
+							"type": "string",
+							"example": "email"
+						}
+					}
+				}
+			},
+			"ExceptionServerError": {
+				"error": {
+					"type": "string",
+					"description": "Definition of error",
+					"default": "Server Error",
+					"example": "Server Error"
+				},
+				"status": {
+					"type": "integer",
+					"description": "Status code of response",
+					"default": 401,
+					"example": 401
+				},
+				"exception": {
+					"type": "string",
+					"description": "The exception message",
+					"example": "Baz given, expected Foo or Bar"
+				},
+				"trace": {
+					"type": "string",
+					"description": "The trace of the exception."
+				},
+				"thrownIn": {
+					"type": "string",
+					"description": "The method where the exception was thrown",
+					"example": "\\App\\Foo\\Bar\\Baz()"
+				},
+				"file": {
+					"type": "string",
+					"description": "The file that threw the exception. Set only when server is in debugging mode"
+				},
+				"line": {
+					"type": "integer",
+					"description": "The line of the file where the exception was thrown. Set only when the server is in debugging mode"
+				},
+				"severity": {
+					"type": "string",
+					"description": "Set only in debugging mode."
 				}
 			}
 		}
