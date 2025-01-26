@@ -2,7 +2,7 @@
 	"openapi": "3.0.2",
 	"info": {
 		"title": "Kittens API",
-		"version": "1.0",
+		"version": "1.0.1",
 		"license": {
 			"name": "GNU GPLv3",
 			"url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
@@ -1925,43 +1925,46 @@
 				}
 			},
 			"ExceptionServerError": {
-				"error": {
-					"type": "string",
-					"description": "Definition of error",
-					"default": "Server Error",
-					"example": "Server Error"
-				},
-				"status": {
-					"type": "integer",
-					"description": "Status code of response",
-					"default": 401,
-					"example": 401
-				},
-				"exception": {
-					"type": "string",
-					"description": "The exception message",
-					"example": "Baz given, expected Foo or Bar"
-				},
-				"trace": {
-					"type": "string",
-					"description": "The trace of the exception."
-				},
-				"thrownIn": {
-					"type": "string",
-					"description": "The method where the exception was thrown",
-					"example": "\\App\\Foo\\Bar\\Baz()"
-				},
-				"file": {
-					"type": "string",
-					"description": "The file that threw the exception. Set only when server is in debugging mode"
-				},
-				"line": {
-					"type": "integer",
-					"description": "The line of the file where the exception was thrown. Set only when the server is in debugging mode"
-				},
-				"severity": {
-					"type": "string",
-					"description": "Set only in debugging mode."
+				"type": "object",
+				"properties": {
+					"error": {
+						"type": "string",
+						"description": "Definition of error",
+						"default": "Server Error",
+						"example": "Server Error"
+					},
+					"status": {
+						"type": "integer",
+						"description": "Status code of response",
+						"default": 500,
+						"example": 500
+					},
+					"exception": {
+						"type": "string",
+						"description": "The exception message",
+						"example": "Baz given, expected Foo or Bar"
+					},
+					"trace": {
+						"type": "string",
+						"description": "The trace of the exception."
+					},
+					"thrownIn": {
+						"type": "string",
+						"description": "The method where the exception was thrown",
+						"example": "\\App\\Foo\\Bar\\Baz()"
+					},
+					"file": {
+						"type": "string",
+						"description": "The file that threw the exception. Set only when server is in debugging mode"
+					},
+					"line": {
+						"type": "integer",
+						"description": "The line of the file where the exception was thrown. Set only when the server is in debugging mode"
+					},
+					"severity": {
+						"type": "string",
+						"description": "Set only in debugging mode."
+					}
 				}
 			}
 		}
