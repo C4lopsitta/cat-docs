@@ -11,6 +11,7 @@
         <variables>
             <noindex-content>true</noindex-content>
         </variables>
+        <sitemap priority="0.35" change-frequency="monthly" />
     </build-profile>
     <footer>
         <copyright>2024 - Robaldo Simone</copyright>

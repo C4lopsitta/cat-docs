@@ -1,4 +1,4 @@
-# /api/v1/users/{uid} 
+# User Endpoints
 
 GET
 ---
@@ -12,6 +12,9 @@ PUT
 
 DELETE
 ------
+<warning>
+    When deleting a user, all their Cats and related data will be deleted permanently with no way to recover it.
+</warning>
 <api-endpoint openapi-path="../../../../cat-php-api_openapi.json" endpoint="/api/v1/users/{uid}" method="DELETE" />
 
 
