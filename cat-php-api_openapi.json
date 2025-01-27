@@ -1442,7 +1442,6 @@
 			}
 		},
 
-
 		"/api/v1/cats": {
 			"get": {
 				"description": "List all cats",
@@ -1475,18 +1474,360 @@
 		},
 		"/api/v1/cats/{uid}": {
 			"get": {
-
+				"description": "Get a cat by its UID",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "Cat's UID",
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+						"required": true
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Returns cat data with contents depending on the authorization status",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Cat"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
+						"description": "The requested cat could not be found."
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						},
+						"description": "Something went wrong on the server and the request could not be handled."
+					}
+				}
 			},
 			"put": {
-
+				"description": "Update your cat's details. Requires authorization",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "Cat UID",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					{
+						"in": "header",
+						"name": "authorization",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "bearer ........"
+					}
+				],
+				"requestBody": {
+					"description": "The updated cat data",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"test": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Returns cat data with updated content",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Cat"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Error with authenticating the request.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "User is not verified. Complete account verification through email first.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUserNotVerified"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
+						"description": "The requested cat could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
+					}
+				}
 			},
 			"delete": {
-
+				"description": "Delete one of your cats. Requires authorization.",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "Cat UID",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					{
+						"in": "header",
+						"name": "authorization",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": { "type": "string" },
+						"example": "bearer ........"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully deleted Cat.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"success": {
+											"type": "boolean",
+											"description": "Always true as 200 represents successful operation",
+											"example": true
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Error with authenticating the request.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
+						"description": "The requested cat could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
+					}
+				}
 			}
 		},
 		"/api/v1/cats/{uid}/sell": {
 			"post": {
-
+				"description": "Sell one of your cats. Requires authorization",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "uid",
+						"description": "Cat UID",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					{
+						"in": "header",
+						"name": "authorization",
+						"description": "Bearer Token",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "bearer ........"
+					}
+				],
+				"requestBody": {
+					"description": "The updated cat data",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"price": {
+										"type": "integer",
+										"description": "The cat's sale price in Euro Cents. Can be zero.",
+										"example": 4200,
+										"minimum": 0
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Cat was put up for sale successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"price": {
+											"type": "integer",
+											"description": "The price at which the cat was put up for sale at",
+											"example": 4200
+										},
+										"vat": {
+											"type": "integer",
+											"description": "The cat's VAT percentage of the sale price.",
+											"example": 924
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "The requested was badly formatted.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionBadRequest"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Error with authenticating the request.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUnauthorized"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "User is not verified. Complete account verification through email first.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionUserNotVerified"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionNotFound"
+								}
+							}
+						},
+						"description": "The requested cat could not be found."
+					},
+					"500": {
+						"description": "Something went wrong on the server and the request could not be handled.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionServerError"
+								}
+							}
+						}
+					}
+				}
 			}
 		},
 		"/api/v1/cats/create": {
