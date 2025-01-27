@@ -2,8 +2,6 @@
 
 > All endpoints start from `/api/v1`
 
-> Note that on the sidebars, even "folder" like topics contain important information and endpoint definitions.
-
 ## Endpoints
 All the endpoints marked with *authenticated* require a valid user authentication token to be accessed.
 - [`/users`](API-Users.md)

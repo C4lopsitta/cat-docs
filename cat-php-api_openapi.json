@@ -624,6 +624,28 @@
 				}
 			}
 		},
+		"/api/v1/users/passwordReset": {
+			"post": {
+				"description": "Trigger password reset for user",
+				"parameters": [],
+				"requestBody": {
+
+				},
+				"responses": {
+
+				}
+			},
+			"put": {
+				"description": "Complete password reset for user",
+				"parameters": [],
+				"requestBody": {
+
+				},
+				"responses": {
+
+				}
+			}
+		},
 		"/api/v1/users/{uid}/cart": {
 			"get": {
 				"description": "Fetch the user's cart contents.",

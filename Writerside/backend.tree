@@ -7,25 +7,34 @@
                  start-page="Index.md">
 
     <toc-element topic="Index.md">
-        <toc-element topic="API_Reference.md">
-            <toc-element topic="API-Users.md" >
+        <toc-element toc-title="API Reference">
+            <toc-element topic="API_Reference.md" toc-title="Introduction" />
+            <toc-element toc-title="Users Endpoints">
+                <toc-element topic="API-Users.md" toc-title="Introduction" />
+                <toc-element topic="UsersListAll.md" />
                 <toc-element topic="UsersRegister.md" />
                 <toc-element topic="UserValidateAccount.md" />
                 <toc-element topic="UserAuthenticate.md" />
+                <toc-element topic="UserResetPassword.md" />
 <!--                <toc-element topic="UserValidateToken.md" />-->
-                <toc-element topic="UserUID.md" toc-title="User UID Endpoints">
+                <toc-element toc-title="User UID">
+                    <toc-element topic="UserUID.md" toc-title="User GET-PUT-DELETE Endpoints" />
                     <toc-element topic="UserWishlist.md" toc-title="Manage User Wishlist" />
                     <toc-element topic="UserCart.md" toc-title="Manage User Cart" />
                     <toc-element topic="CheckoutCart.md" toc-title="Checkout User Cart" />
                 </toc-element>
             </toc-element>
-            <toc-element topic="API-Cats.md">
-                <toc-element topic="CatsUID.md">
+            <toc-element toc-title="Cats Endpoints">
+                <toc-element topic="CatsListAll.md" />
+                <toc-element topic="API-Cats.md" toc-title="Introduction" />
+                <toc-element toc-title="Cat UID">
+                    <toc-element topic="CatsUID.md" toc-title="Cat GET-PUT-DELETE Endpoints" />
                     <toc-element topic="CatsSell.md" />
                 </toc-element>
                 <toc-element topic="CatsCreate.md" />
             </toc-element>
-            <toc-element topic="API-Definitions.md">
+            <toc-element toc-title="Definitions">
+                <toc-element topic="API-Definitions.md" toc-title="Introduction" />
                 <toc-element topic="Exceptions.md" />
             </toc-element>
         </toc-element>
