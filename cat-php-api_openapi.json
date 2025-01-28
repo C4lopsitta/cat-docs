@@ -1581,8 +1581,40 @@
 							"schema": {
 								"type": "object",
 								"properties": {
-									"test": {
-										"type": "string"
+									"age": {
+										"type": "integer",
+										"description": "Cat's age",
+										"example": 42
+									},
+									"description": {
+										"type": "string",
+										"description": "Cat's description",
+										"example": "Lord Megatron Destroyer of Worlds, more affectionately known as Wiwi, used to be the general commander of the catworld army during the liberation of France from occupation."
+									},
+									"whenLastSeen": {
+										"type": "string",
+										"description": "Date of where the cat, usually when stray, was last seen in format DD-MM-YYYY",
+										"example": "27/02/1933"
+									},
+									"whereLastSeen": {
+										"type": "string",
+										"description": "Where the cat was last seen",
+										"example": "Platz der Republik 1, 11011 Berlin, Germany"
+									},
+									"weight": {
+										"type": "integer",
+										"description": "The cat's weight in grams",
+										"example": 420
+									},
+									"isStray": {
+										"type": "boolean",
+										"description": "If the cat is stray or not",
+										"example": false
+									},
+									"price": {
+										"type": "integer",
+										"description": "The cat's price in cents of EUR",
+										"example": 6942
 									}
 								}
 							}
