@@ -26,7 +26,7 @@
 								"schema": {
 									"type": "array",
 									"items": {
-										"$ref": "#/components/schemas/User"
+										"$ref": "#/components/schemas/CompactUser"
 									}
 								}
 							}
@@ -2106,6 +2106,41 @@
 						"enum": ["image/jpeg", "image/png", "image/gif"],
 						"description": "The user's profile picture mime type",
 						"example": "image/gif"
+					}
+				}
+			},
+			"CompactUser": {
+				"properties": {
+					"uid": {
+						"type": "string",
+						"description": "The user's Unique ID",
+						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					"username": {
+						"type": "string",
+						"description": "The user's username. ",
+						"example": "Bob"
+					},
+					"image": {
+						"type": "string",
+						"description": "The user's profile picture in base64 format.",
+						"example": "base64 ........"
+					},
+					"imageMime": {
+						"type": "string",
+						"enum": ["image/jpeg", "image/png", "image/gif"],
+						"description": "The user's profile picture mime type",
+						"example": "image/gif"
+					},
+					"description": {
+						"type": "string",
+						"description": "The user's description. Can be empty",
+						"example": "I'm bob and i love cats. I live in catworld and have 2^64 cats in my house. Their names are the fibonacci sequence. Except cat number 42 whose name is Megatron."
+					},
+					"pronouns": {
+						"type": "string",
+						"description": "The user's pronouns, can be empty.",
+						"example": "hee/hee"
 					}
 				}
 			},
