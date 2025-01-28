@@ -1610,11 +1610,6 @@
 										"type": "boolean",
 										"description": "If the cat is stray or not",
 										"example": false
-									},
-									"price": {
-										"type": "integer",
-										"description": "The cat's price in cents of EUR",
-										"example": 6942
 									}
 								}
 							}
