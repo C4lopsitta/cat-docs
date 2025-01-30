@@ -657,14 +657,26 @@
 						"required": true,
 						"schema": { "type": "string" },
 						"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
-					}, {
+					},
+					{
 						"in": "header",
 						"name": "authorization",
 						"description": "Bearer Token",
 						"required": true,
 						"schema": { "type": "string" },
 						"example": "bearer ........"
-					}, {
+					},
+					{
+						"in": "query",
+						"name": "fullData",
+						"description": "Specify that you want the whole Cat object instead of a list of UIDs. When not set it defaults to a UID list",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						},
+						"allowEmptyValue": true
+					},
+					{
 						"in": "query",
 						"required": false,
 						"name": "page",
@@ -692,53 +704,96 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "object",
-									"properties": {
-										"billable": {
+									"oneOf": [
+										{
 											"type": "object",
-											"description": "Cost of all items in cart",
+											"description": "Compact Cart data containing only a list of UIDs of the cats in the cart.",
 											"properties": {
-												"amount": {
-													"type": "string",
-													"description": "Total cost",
-													"example": "42.00"
+												"billable": {
+													"type": "object",
+													"description": "Cost of all items in cart",
+													"properties": {
+														"amount": {
+															"type": "string",
+															"description": "Total cost",
+															"example": "42.00"
+														},
+														"currency": {
+															"type": "string",
+															"description": "Currency used in transaciton. Always EUR (Euro)",
+															"enum": [
+																"EUR"
+															],
+															"example": "EUR"
+														},
+														"vat": {
+															"type": "string",
+															"description": "VAT in total expense, already included in amount.",
+															"example": "9.24"
+														}
+													}
 												},
-												"currency": {
-													"type": "string",
-													"description": "Currency used in transaciton. Always EUR (Euro)",
-													"enum": ["EUR"],
-													"example": "EUR"
-												},
-												"vat": {
-													"type": "string",
-													"description": "VAT in total expense, already included in amount.",
-													"example": "9.24"
+												"cart": {
+													"type": "array",
+													"description": "The list of Cat UIDs",
+													"items": {
+														"type": "string",
+														"example": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+													}
 												}
 											}
 										},
-										"cart": {
-											"type": "array",
-											"items": {
-												"$ref": "#/components/schemas/Uid"
-											},
-											"description": "A list of the UIDs of the cats in the cart."
-										},
-										"page": {
-											"type": "integer",
-											"description": "The current requested page relative to the amount of items per page. Not available when paging is disabled.",
-											"example": 0
-										},
-										"viewing": {
-											"type": "string",
-											"description": "The range of currently shown items. Not available when paging is disabled.",
-											"example": "0-24"
-										},
-										"totalItems": {
-											"type": "integer",
-											"description": "The total amount of items in the cart",
-											"example": 42
+										{
+											"type": "object",
+											"description": "Cart data with complete cat information provided when query parameter `?fullData` is set.",
+											"properties": {
+												"billable": {
+													"type": "object",
+													"description": "Cost of all items in cart",
+													"properties": {
+														"amount": {
+															"type": "string",
+															"description": "Total cost",
+															"example": "42.00"
+														},
+														"currency": {
+															"type": "string",
+															"description": "Currency used in transaciton. Always EUR (Euro)",
+															"enum": ["EUR"],
+															"example": "EUR"
+														},
+														"vat": {
+															"type": "string",
+															"description": "VAT in total expense, already included in amount.",
+															"example": "9.24"
+														}
+													}
+												},
+												"cart": {
+													"type": "array",
+													"items": {
+														"$ref": "#/components/schemas/Uid"
+													},
+													"description": "A list of the UIDs of the cats in the cart."
+												},
+												"page": {
+													"type": "integer",
+													"description": "The current requested page relative to the amount of items per page. Not available when paging is disabled.",
+													"example": 0
+												},
+												"viewing": {
+													"type": "string",
+													"description": "The range of currently shown items. Not available when paging is disabled.",
+													"example": "0-24"
+												},
+												"totalItems": {
+													"type": "integer",
+													"description": "The total amount of items in the cart",
+													"example": 42
+												}
+											}
 										}
-									}
+									]
 								}
 							}
 						}
@@ -1972,7 +2027,9 @@
 			"CatCreate": {
 				"type": "object",
 				"required": [
-					"name"
+					"name",
+					"age",
+					"isStray"
 				],
 				"properties": {
 					"name": {
