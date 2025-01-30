@@ -772,7 +772,7 @@
 												"cart": {
 													"type": "array",
 													"items": {
-														"$ref": "#/components/schemas/Uid"
+														"$ref": "#/components/schemas/Cat"
 													},
 													"description": "A list of the UIDs of the cats in the cart."
 												},
